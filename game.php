@@ -47,6 +47,7 @@ class Game{
                 $this->board[0][$i]==$this->board[1][$i]&&$this->board[1][$i]==$this->board[2][$i]){
 
                 $this->result = GameResult::WIN;
+                $this->gameState = GameState::Finished;
                 unset($_SESSION);
                 session_destroy();
                 throw new Exception("Player : ".$this->currentPlayer->userName." Is ".GameResult::getResultString($this->result));
@@ -64,6 +65,7 @@ class Game{
             // $this->gameInfo->player2 = $this->players[1];
             // $this->gameInfo->Winner=$this->currentPlayer;
             // $this->gameInfo->finshTime = date("H:i:s");
+            $this->gameState = GameState::Finished;
             unset($_SESSION);
             session_destroy();
             throw new Exception("Player : ".$this->currentPlayer->userName." Is ".GameResult::getResultString($this->result));
@@ -74,6 +76,7 @@ class Game{
             // $this->gameInfo->result=GameResult::DRAW;
             // file_put_contents('GammingHistory.txt',$this->gameInfo);
             $this->result = GameResult::DRAW;
+            $this->gameState = GameState::Finished;
             unset($_SESSION);
             session_destroy();
             throw new Exception("Game Over : ".GameResult::getResultString($this->result));

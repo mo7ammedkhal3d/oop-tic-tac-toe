@@ -28,10 +28,10 @@
 
         .start-game {
             background-color: purple;
-            height: auto;
+            height: 25rem;
             padding: 2rem 0;
             width: 50%;
-            margin: 4% auto;
+            margin: 12% auto 0;
             border-radius: 0.5rem;
             color: white;
             display: flex;
@@ -47,11 +47,11 @@
             background-color: black;
             border-radius: 0.5rem;
             cursor: pointer;
-            display: none;
+            /* display: none; */
         }
 
         .players-info {
-            /* display: none; */
+            display: none;
         }
 
         .players-info label {
@@ -88,7 +88,16 @@
 
         .error {
             color: white;
+            position: absolute;
+            top: 5%;
+            font-size: 1.5vw;
+            font-family: cursive;
+            border-radius: 0.5rem;
+            padding: 2%;
+            background-color: orange;
+            left: 35%;
             text-align: center;
+            display: none;
         }
 
         .player1 ,.player2{
@@ -145,6 +154,7 @@
                     contentType: false,
                     success: function (response) {
                         container.find('.error').html(response);
+                        container.find('.error').show();
                         container.find('.start-game').fadeOut(1000);
                         setTimeout(function () {
                             container.find('.start-game').html(
