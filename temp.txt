@@ -1,0 +1,48 @@
+            // container.html();
+            // container.html(`
+            //     <table border=1>
+            //     <tr>
+            //         <td></td>
+            //         <td></td>
+            //         <td></td>
+            //     </tr>
+            //     <tr>
+            //         <td></td>
+            //         <td></td>
+            //         <td></td>
+            //     </tr>
+            //     <tr>
+            //         <td></td>
+            //         <td></td>
+            //         <td></td>
+            //     </tr>
+            // </table>`)
+
+
+
+            // $game =new Game();
+
+// $player1 = new player();
+// $player1->userName ="Mohammed Khaled";
+// $player1->playerSymbol='X';
+// $player2 = new player();
+// $player2->userName = "Ali Omer";
+// $player2->playerSymbol='O';
+
+// $game->addPlayer($player1);
+// $game->addPlayer($player2);
+
+// for($i=0;$i<3;$i++){
+//     for($j=0;$j<3;$j++){
+//         $move =new GameMove();
+//         $move->x = $i;
+//         $move->y = $j; 
+//         try {
+//             $game->makeMove($move);
+//         } catch (\Throwable $th) {
+//             // echo '<h1 style="background-color:red">'.$th->getMessage() . $th->getCode().$th->getLine().$th->getFile().'</h1>';
+//             echo '<h1 style="background-color:red">'.$th->getMessage().'</h1>';
+//         }
+
+//     }
+// }
