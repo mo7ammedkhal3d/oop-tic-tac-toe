@@ -14,15 +14,16 @@
 
 <body>
     <div class="container">
-        <div class="play-info"></div>
+        <div class="play-info-container"><p class="play-info"></p></div>
         <div class="start-game">
+            <button id="new-game">New Game</button>
             <h3>Start Game</h3>
             <div class="players-info">
                 <form method="POST">
                     <div class="player1">
                         <h3>Player 1</h3>
-                        <label for="player1name">Name<input name="player1name" type="text"></label>
-                        <label for="symbol">Select Symbol
+                        <label for="player1name">Name <input name="player1name" type="text"></label>
+                        <label for="symbol">Symbol
                             <select id="symbol" name="symbol">
                                 <option>X</option>
                                 <option>O</option>

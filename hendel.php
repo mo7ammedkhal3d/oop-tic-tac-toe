@@ -1,9 +1,9 @@
 <?php
-require_once 'tic-tac-toe/gameState.php';
-require_once 'tic-tac-toe/gameMove.php';
-require_once 'tic-tac-toe/gameResult.php';
-require_once 'tic-tac-toe/player.php';
-require_once 'tic-tac-toe/game.php';
+
+require_once('ticTacToe/gameMove.php');
+require_once('ticTacToe/gameResult.php');
+require_once('ticTacToe/player.php');
+require_once('ticTacToe/game.php');
 
 session_start(); 
 

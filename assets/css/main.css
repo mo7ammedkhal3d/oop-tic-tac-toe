@@ -1,29 +1,61 @@
-html,
-body {
-    background-color: #313131;
+/* Variable */
+:root{
+    --primary-color:#222831;
+    --secondry-color:#EEEEEE;
+    --boxs-color:#00ADB5;
+    --font-color:#393E46;
+    --font-familey:cursive;
 }
 
-table {
-    background-color: black;
+/* Rest defult */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: var(--primary-color);
+    font-family: var(--font-familey);
+}
+
+/* Container */
+
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Table */
+
+table{
+    background-color: var(--boxs-color);
     text-align: center;
-    color: white;
+    color: var(--font-color);
     margin: 2% auto;
 }
 
 td {
     height: 6rem;
     width: 7rem;
-    font-family: cursive;
     font-size: 2rem;
     cursor: pointer;
 }
 
+/* Start game */
+
 .start-game {
-    background-color: purple;
+    background-color: var(--secondry-color);
     height: 25rem;
+    position: relative;
     padding: 2rem 0;
     width: 50%;
-    margin: 12% auto 0;
+    margin: 2% auto 0;
     border-radius: 0.5rem;
     flex-direction: column;
     color: white;
@@ -32,35 +64,29 @@ td {
     justify-content: center;
 }
 
-select {
-    margin-left: 1.4rem;
-}
-
 .start-game>h3 {
     padding: 1vw;
     background-color: black;
     border-radius: 0.5rem;
     cursor: pointer;
-    /* display: none; */
 }
 
-.players-info {
+/* Players info */
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+.players-info{
     display: none;
-    transition: all 0.5s ease;
 }
 
 .players-info label {
     display: block;
+    color: var(--font-color);
     margin-bottom: 1rem;
-}
-
-.players-info input {
-    margin-left: 5rem;
-}
-
-.player1 h3,
-.player2 h3 {
-    text-align: center;
+    margin-left: 6rem;
 }
 
 .players-info input,
@@ -68,49 +94,94 @@ select {
     height: 2rem;
     width: 20vw;
     text-align: center;
+    background-color: var(--boxs-color);
+    color: var(--font-color);
+    border: none;
     border-radius: 0.5rem;
+}
+
+.players-info input:focus,
+.players-info select:focus {
+    outline: 0.2rem solid var(--font-color);
+}
+
+.players-info input {
+    margin-left: 2rem;
+}
+
+.players-info select {
+    margin-left: 1.4rem;
 }
 
 .players-info button {
     border: none;
     border-radius: 0.5rem;
-    background-color: orange;
+    background-color: var(--primary-color);
+    color: var(--secondry-color);
     width: 10vw;
     cursor: pointer;
     height: 2.5rem;
-    margin: 0 auto;
-}
-
-.play-info {
-    color: white;
-    position: absolute;
-    top: 5%;
-    font-size: 1.5vw;
-    font-family: cursive;
-    border-radius: 0.5rem;
-    padding: 2%;
-    background-color: orange;
-    left: 35%;
-    text-align: center;
-    display: none;
-}
-
-.warning {
-    color: white;
-    color: white;
-    position: relative;
-    font-size: 1.5vw;
-    bottom: 0%;
-    font-family: cursive;
-    border-radius: 0.5rem;
-    padding: 1%;
-    background-color: orange;
-    left: 1%;
-    text-align: center;
-    display: none;
+    margin-top: 1rem;
 }
 
 .player1,
 .player2 {
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
+
+.player1 h3,
+.player2 h3 {
+    color: var(--font-color);
+}
+
+/* Play info & Warning */
+
+.play-info, .warning{
+    color: var(--font-color);
+    font-size: 1.5vw;
+    border-radius: 0.5rem;
+    padding: 2%;
+    background-color: var(--boxs-color);
+    text-align: center;
+}
+
+#new-game{
+    border: none;
+    top: 2%;
+    display: none;
+    left: 2%;
+    position: absolute;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color);
+    color: var(--secondry-color);
+    width: 10vw;
+    cursor: pointer;
+    height: 2.5rem;
+    margin-top: 1rem;
+}
+
+.play-info-container{
+    display: flex;
+    justify-content: center;
+    height: 6rem;
+    margin: 2rem auto 0;
+}
+
+.play-info{
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    text-wrap: nowrap;
+    visibility: hidden;
+}
+
+.warning {
+    position: relative;
+    bottom: 0%;
+    padding: 1%;
+    left: 1%;
+    display: none;
+}
+
+
+

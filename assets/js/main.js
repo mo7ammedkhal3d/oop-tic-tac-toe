@@ -1,9 +1,10 @@
 $(document).ready(function () {
     var container = $('.container').eq(0);
     var playInfo = container.find('.play-info');
-    var startGame = container.find('.start-game');
     var playersInfo = container.find('.players-info');
+    var playersInfoContent = playersInfo.html();
     var warning = container.find('.warning'); 
+    var newGame = container.find('#new-game')
     container.find('h3').on('click', function () {
         $(this).hide();
         playersInfo.fadeIn(1000);
@@ -24,9 +25,9 @@ $(document).ready(function () {
                 console.log(jsonResponse.playStart);
                 if(jsonResponse.success) {
                     playInfo.html(jsonResponse.playStart);
-                    playInfo.show();
-                    playersInfo.fadeOut(1000);
+                    playersInfo.fadeOut(600);
                     setTimeout(function () {
+                        playInfo.css("visibility", "visible").show(600);
                         playersInfo.html(
                             ` <table border=1>
                                         <tr>
@@ -47,11 +48,11 @@ $(document).ready(function () {
                                     </table>`);
                         playersInfo.fadeIn(600);
                         set();
-                    }, 1000)
+                    }, 600)
                 }
                 else {
                     playInfo.html(jsonResponse.error);
-                    playInfo.show();
+                    playInfo.css("visibility", "visible").show(600);
                 }
                 function set() {
                     var cells = $('table').find('td');
@@ -78,8 +79,12 @@ $(document).ready(function () {
                                                 }).join('')}
                                             </table>`);
                                         if(jsonResponse.moveDetils.result!=""){
+                                            playInfo.html("Play finsh 🙌");
                                             warning.html(jsonResponse.moveDetils.result);
                                             warning.show();
+                                            setTimeout(function(){
+                                                newGame.show();
+                                            },700);
                                         } else  set();                                            
                                     } else{
                                         console.log("ho")
@@ -101,5 +106,16 @@ $(document).ready(function () {
                 warning.show();
             }
         });
+
+        newGame.on('click',function(){
+            $(this).fadeOut(600);
+            playInfo.html("");
+            warning.html("");
+            playInfo.css("visibility", "hidden");
+            warning.fadeOut(600);
+            playersInfo.fadeOut(600);
+            playersInfo.html(playersInfoContent);
+            playersInfo.fadeIn(600);
+        })
     })
 });
