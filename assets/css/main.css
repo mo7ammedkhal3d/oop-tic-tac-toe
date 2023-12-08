@@ -1,0 +1,116 @@
+html,
+body {
+    background-color: #313131;
+}
+
+table {
+    background-color: black;
+    text-align: center;
+    color: white;
+    margin: 2% auto;
+}
+
+td {
+    height: 6rem;
+    width: 7rem;
+    font-family: cursive;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.start-game {
+    background-color: purple;
+    height: 25rem;
+    padding: 2rem 0;
+    width: 50%;
+    margin: 12% auto 0;
+    border-radius: 0.5rem;
+    flex-direction: column;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+select {
+    margin-left: 1.4rem;
+}
+
+.start-game>h3 {
+    padding: 1vw;
+    background-color: black;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    /* display: none; */
+}
+
+.players-info {
+    display: none;
+    transition: all 0.5s ease;
+}
+
+.players-info label {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.players-info input {
+    margin-left: 5rem;
+}
+
+.player1 h3,
+.player2 h3 {
+    text-align: center;
+}
+
+.players-info input,
+.players-info select {
+    height: 2rem;
+    width: 20vw;
+    text-align: center;
+    border-radius: 0.5rem;
+}
+
+.players-info button {
+    border: none;
+    border-radius: 0.5rem;
+    background-color: orange;
+    width: 10vw;
+    cursor: pointer;
+    height: 2.5rem;
+    margin: 0 auto;
+}
+
+.play-info {
+    color: white;
+    position: absolute;
+    top: 5%;
+    font-size: 1.5vw;
+    font-family: cursive;
+    border-radius: 0.5rem;
+    padding: 2%;
+    background-color: orange;
+    left: 35%;
+    text-align: center;
+    display: none;
+}
+
+.warning {
+    color: white;
+    color: white;
+    position: relative;
+    font-size: 1.5vw;
+    bottom: 0%;
+    font-family: cursive;
+    border-radius: 0.5rem;
+    padding: 1%;
+    background-color: orange;
+    left: 1%;
+    text-align: center;
+    display: none;
+}
+
+.player1,
+.player2 {
+    margin: 2rem 0;
+}

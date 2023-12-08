@@ -1,38 +1,38 @@
 <?php
-require_once 'gameState.php';
-require_once 'gameMove.php';
-require_once 'gameResult.php';
-require_once 'player.php';
-require_once 'game.php';
+require_once 'tic-tac-toe/gameState.php';
+require_once 'tic-tac-toe/gameMove.php';
+require_once 'tic-tac-toe/gameResult.php';
+require_once 'tic-tac-toe/player.php';
+require_once 'tic-tac-toe/game.php';
 
-session_start(); // Start the session
+session_start(); 
 
 define('ROOT_PATH', '/PHP/oop-tic-tac-toe/hendel.php');
 $requst = str_replace(ROOT_PATH, '', $_SERVER['REQUEST_URI']);
 
-// Retrieve or create the game object from the session
-if (!isset($_SESSION['game'])) {
+
+if(!isset($_SESSION['game'])) {
     $_SESSION['game'] = new Game();
 }
 $game = $_SESSION['game'];
 
-if ($requst == '/start') {
+if($requst == '/start') {
     try {
         $player1 = new Player();
         $player1->userName = $_POST['player1name'];
         $player1->playerSymbol = $_POST['symbol'];
         $player2 = new Player();
         $player2->userName = $_POST['player2name'];
-        if ($player1->playerSymbol == 'X') {
+        if($player1->playerSymbol == 'X') {
             $player2->playerSymbol = 'O';
         } else {
             $player2->playerSymbol = 'X';
         }
         $game->addPlayer($player1);
-        $game->addPlayer($player2);
-
+        $playStart=$game->addPlayer($player2);
+        echo json_encode(['success' => true,'playStart'=> $playStart]);
     } catch (\Throwable $th) {
-        echo '<h1 style="background-color:red">' . $th->getMessage(). '</h1>';
+        echo json_encode(['success' => false, 'error' => $th->getMessage()]);
     }
 }
 
@@ -41,12 +41,12 @@ if ($requst == '/move') {
     $move->x = $_POST['x'];
     $move->y = $_POST['y'];
     try {
-        $game->makeMove($move);
-    } catch (\Throwable $th){
-        echo '<h1 style="background-color:red">' . $th->getMessage() . '</h1>';
+        $moveDetils = $game->makeMove($move);
+        echo json_encode(['success' => true, 'moveDetils' => $moveDetils]);
+    } catch (\Throwable $th) {
+        echo json_encode(['success' => false, 'error' => $th->getMessage()]);
     }
 }
 
-// Save the updated game object back to the session
 $_SESSION['game'] = $game;
 ?>

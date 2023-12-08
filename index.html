@@ -4,113 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TIC TAC TOE</title>
-
-    <style>
-        html,
-        body {
-            background-color: #313131;
-        }
-
-        table {
-            background-color: black;
-            text-align: center;
-            color: white;
-            margin: 2% auto;
-        }
-
-        td {
-            height: 6rem;
-            width: 7rem;
-            font-family: cursive;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .start-game {
-            background-color: purple;
-            height: 25rem;
-            padding: 2rem 0;
-            width: 50%;
-            margin: 12% auto 0;
-            border-radius: 0.5rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        select{
-            margin-left: 1.4rem;
-        }
-        .start-game>h3 {
-            padding: 1vw;
-            background-color: black;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            /* display: none; */
-        }
-
-        .players-info {
-            display: none;
-        }
-
-        .players-info label {
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .players-info input {
-            margin-left: 5rem;
-        }
-
-        .player1 h3,
-        .player2 h3 {
-            text-align: center;
-        }
-
-        .players-info input,
-        .players-info select {
-            height: 2rem;
-            width: 20vw;
-            text-align: center;
-            border-radius: 0.5rem;
-        }
-
-        .players-info button{
-            border: none;
-            border-radius: 0.5rem;
-            background-color: orange;
-            width: 10vw;
-            cursor: pointer;
-            height: 2.5rem;
-            margin: 0 auto;
-        }
-
-        .error {
-            color: white;
-            position: absolute;
-            top: 5%;
-            font-size: 1.5vw;
-            font-family: cursive;
-            border-radius: 0.5rem;
-            padding: 2%;
-            background-color: orange;
-            left: 35%;
-            text-align: center;
-            display: none;
-        }
-
-        .player1 ,.player2{
-            margin: 2rem 0;
-        }
-
-    </style>
+       
+    <!-- Links -->
+    <link rel="stylesheet" href="./assets/css/main.css">
+    
 </head>
 
 <body>
     <div class="container">
-        <div class="error"></div>
+        <div class="play-info"></div>
         <div class="start-game">
             <h3>Start Game</h3>
             <div class="players-info">
@@ -130,88 +34,13 @@
                         <h3>Player 2</h3>
                         <label for="player2name">Name<input name="player2name" type="text"></label>
                     </div>
-                    <button type="submit">OK</button>
+                    <button type="submit">Start</button>
                 </form>
-            </div>
+            </div>  
+            <div class="warning"></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var container = $('.container').eq(0);
-            var warning = container.find('.error');
-            var startGame = container.find('.start-game');
-            var playersInfo = container.find('.players-info');
-            container.find('h3').on('click', function () {
-                $(this).hide();
-                playersInfo.fadeIn(1000);
-            })
-
-            container.find('form').on('submit', function (e) {
-                e.preventDefault();
-                var formData = new FormData(this);
-                $.ajax({
-                    type: 'POST',
-                    url: 'hendel.php/start',
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (response){
-                        warning.html(response);
-                        warning.show();
-                        playersInfo.fadeOut(1000);
-                        setTimeout(function () {
-                            playersInfo.html(
-                                        ` <table border=1>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>
-                                            </table>`);
-                            playersInfo.fadeIn(1000);
-                            set();
-                        }, 1000)
-
-                        function set(){
-                            var cells = $('table').find('td');
-                            cells.each(function (index) {
-                                $(this).on('click', function () {
-                                    var x = $(this).parent().index(); 
-                                    var y = $(this).index(); 
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: 'hendel.php/move',
-                                        data: { x: x, y: y },
-                                        success: function (response) {
-                                            playersInfo.html(response);
-                                            set();
-                                        },
-                                        error: function (error) {
-                                            container.find('.error').html(error);
-                                        }
-                                    });
-                                });
-                            });
-                        }                
-                    },
-                    error: function (error) {
-                        container.find('.error').html(error)
-                    }
-                });
-            })
-        });
-    </script>
+    <script src="./assets/js/main.js"></script>
 </body>
-
 </html>
